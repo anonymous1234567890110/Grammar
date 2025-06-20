@@ -3,230 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خلاصة الإعراب الاحترافية</title>
+    <title>خلاصة الإعراب التفاعلية</title>
     
-    <!-- PWA Manifest & Theme -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#2c3e50">
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1f2937" media="(prefers-color-scheme: dark)">
     
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+        
+        /* --- CSS Variables for Theming --- */
         :root {
             --bg-color: #f4f7f9;
-            --container-bg: #ffffff;
+            --card-bg-color: #ffffff;
             --text-color: #333;
-            --header-color: #0056b3;
-            --h2-color: #2c3e50;
-            --border-color: #3498db;
-            --table-header-bg: #34495e;
-            --interactive-color: #2980b9;
-            --interactive-hover: #1a5276;
-            --highlight-color: #c0392b;
-            --table-row-even-bg: #f8f9fa;
-            --shadow-color: rgba(0, 0, 0, 0.08);
+            --text-muted-color: #555;
+            --heading-color: #2c3e50;
+            --primary-color: #0056b3;
+            --accent-color: #3498db;
+            --border-color: #e0e0e0;
+            --table-stripe-color: #f8f9fa;
+            --interactive-term-color: #2980b9;
+            --highlight-bg: rgba(231, 76, 60, 0.1);
+            --highlight-text: #c0392b;
+            --header-bg: #34495e;
+            --header-text: #ffffff;
             --followers-header-bg: #8e44ad;
             --final-table-header-bg: #27ae60;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --transition-speed: 0.3s;
         }
 
-        body.dark-mode {
-            --bg-color: #121212;
-            --container-bg: #1e1e1e;
-            --text-color: #e0e0e0;
-            --header-color: #76a9ea;
-            --h2-color: #ecf0f1;
-            --border-color: #5dade2;
-            --table-header-bg: #4a6572;
-            --interactive-color: #5dade2;
-            --interactive-hover: #a9cce3;
-            --highlight-color: #e74c3c;
-            --table-row-even-bg: #2c2c2c;
-            --shadow-color: rgba(255, 255, 255, 0.05);
+        html.dark {
+            --bg-color: #111827;
+            --card-bg-color: #1f2937;
+            --text-color: #e5e7eb;
+            --text-muted-color: #9ca3af;
+            --heading-color: #f9fafb;
+            --primary-color: #60a5fa;
+            --accent-color: #3b82f6;
+            --border-color: #374151;
+            --table-stripe-color: #374151;
+            --interactive-term-color: #38bdf8;
+            --highlight-bg: rgba(255, 107, 107, 0.15);
+            --highlight-text: #fca5a5;
+            --header-bg: #374151;
+            --header-text: #f9fafb;
+            --followers-header-bg: #a855f7;
+            --final-table-header-bg: #22c55e;
+            --shadow-color: rgba(0, 0, 0, 0.3);
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
         
-        * { -webkit-tap-highlight-color: transparent; }
-        
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            margin: 0;
-            padding: 20px 10px;
-            line-height: 1.8;
-            direction: rtl;
-            transition: background-color 0.3s, color 0.3s;
+            margin: 0; padding: 20px; line-height: 1.8; direction: rtl;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
         }
-        
+
         .container {
-            max-width: 1000px; margin: 20px auto;
-            background-color: var(--container-bg);
-            padding: 20px 30px 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px var(--shadow-color);
-            transition: background-color 0.3s, filter 0.3s;
-        }
-
-        /* --- Header and Dark Mode Toggle --- */
-        .app-header {
-            text-align: center;
-            padding: 20px;
-            border-bottom: 1px solid rgba(128, 128, 128, 0.1);
-            margin-bottom: 20px;
             position: relative;
+            max-width: 1000px; margin: 20px auto; background-color: var(--card-bg-color);
+            padding: 30px; border-radius: 12px; box-shadow: 0 5px 25px var(--shadow-color);
+            transition: filter var(--transition-speed) ease-in-out, background-color var(--transition-speed);
         }
-        h1 { color: var(--header-color); margin-bottom: 10px; font-size: 2.3em; font-weight: 700; }
-        h1 + p { color: var(--text-color); opacity: 0.8; font-size: 1.1em; margin-top: 0; }
-        .theme-switch-wrapper { position: absolute; top: 25px; left: 20px; display: flex; align-items: center; }
-        .theme-switch { display: inline-block; height: 26px; position: relative; width: 50px; }
-        .theme-switch input { display:none; }
-        .slider { background-color: #ccc; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0; transition: .4s; border-radius: 34px; }
-        .slider:before { background-color: #fff; bottom: 4px; content: ""; height: 18px; left: 4px; position: absolute; transition: .4s; width: 18px; border-radius: 50%; }
-        input:checked + .slider { background-color: var(--border-color); }
-        input:checked + .slider:before { transform: translateX(24px); }
 
-        /* --- Section Titles with Icons --- */
-        h2 {
-            color: var(--h2-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 12px; margin-top: 50px; margin-bottom: 30px;
-            font-size: 1.9em; font-weight: 700;
-            display: flex; align-items: center; gap: 15px;
-        }
-        h2 i { color: var(--border-color); }
-        
-        /* --- General Table Styles --- */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); border-radius: 10px; overflow: hidden; }
-        th, td { padding: 16px; text-align: right; border-bottom: 1px solid rgba(128, 128, 128, 0.15); vertical-align: middle; transition: background-color 0.3s;}
-        thead th { background-color: var(--table-header-bg); color: #ffffff; font-size: 1.15em; font-weight: 500; }
-        tbody tr:nth-of-type(even) { background-color: var(--table-row-even-bg); }
-        
-        /* --- Specific Table Header Colors --- */
+        body.modal-open .container { filter: blur(5px); }
+        h1 { text-align: center; color: var(--primary-color); margin-bottom: 15px; font-size: 2.2em; }
+        h1 + p { text-align: center; color: var(--text-muted-color); font-size: 1.1em; margin-bottom: 40px; }
+        h2 { color: var(--heading-color); border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-top: 40px; margin-bottom: 25px; font-size: 1.8em; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; box-shadow: 0 2px 8px var(--shadow-color); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 15px; text-align: right; border-bottom: 1px solid var(--border-color); vertical-align: middle;}
+        thead th { background-color: var(--header-bg); color: var(--header-text); font-size: 1.1em; font-weight: 700; }
+        tbody tr:nth-of-type(even) { background-color: var(--table-stripe-color); }
+        .highlight { font-weight: bold; color: var(--highlight-text); background-color: var(--highlight-bg); padding: 2px 5px; border-radius: 4px; }
         #followers-table thead th { background-color: var(--followers-header-bg); }
         #final-table thead th { background-color: var(--final-table-header-bg); }
+        #final-table td { font-weight: bold; text-align: center; }
+        .interactive-term { color: var(--interactive-term-color); font-weight: bold; cursor: pointer; border-bottom: 2px dotted var(--interactive-term-color); transition: color 0.2s, border-bottom-color 0.2s; }
+        .interactive-term:hover { opacity: 0.8; }
         
-        /* --- Interactive & Highlighted Elements --- */
-        .highlight { font-weight: bold; color: var(--highlight-color); background-color: rgba(231, 76, 60, 0.1); padding: 3px 6px; border-radius: 5px; }
-        .interactive-term { color: var(--interactive-color); font-weight: bold; cursor: pointer; border-bottom: 2px dotted; transition: color 0.2s; }
-        .interactive-term:hover { color: var(--interactive-hover); }
-
-        /* --- Copy Button --- */
-        .example-cell { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-        .copy-btn { background: none; border: none; color: #999; cursor: pointer; font-size: 0.9em; padding: 5px; border-radius: 50%; width: 30px; height: 30px; line-height: 1; transition: background-color 0.2s, color 0.2s; }
-        .copy-btn:hover { background-color: rgba(128, 128, 128, 0.1); color: var(--interactive-color); }
-        body.dark-mode .copy-btn:hover { background-color: rgba(255, 255, 255, 0.1); }
-        
-        /* --- Modal and Toast Styles (with animation) --- */
-        .modal-backdrop, .modal { opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .modal { transform: scale(0.95); transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; }
-        body.modal-open .modal-backdrop, body.modal-open .modal { opacity: 1; visibility: visible; }
-        body.modal-open .modal { transform: scale(1); }
-        .modal-backdrop { display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 999; }
-        .modal { display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.95); background-color: var(--container-bg); padding: 25px 35px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); z-index: 1000; width: 90%; max-width: 550px; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(128, 128, 128, 0.2); padding-bottom: 15px; margin-bottom: 15px; }
-        .modal-header h3 { margin: 0; font-size: 1.6em; color: var(--header-color); }
-        .close-modal-btn { background: none; border: none; font-size: 2.2em; font-weight: bold; color: #888; cursor: pointer; line-height: 1; padding: 0; }
-        .modal-body p { font-size: 1.1em; color: var(--text-color); line-height: 1.9; }
-        
-        #toast {
-            visibility: hidden; min-width: 250px;
-            background-color: #333; color: #fff; text-align: center;
-            border-radius: 5px; padding: 16px; position: fixed;
-            z-index: 1001; left: 50%; transform: translateX(-50%); bottom: 30px;
-            opacity: 0; transition: visibility 0.5s, opacity 0.5s linear;
+        /* --- Theme Toggle Button --- */
+        #theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px; /* Left for RTL layout */
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color var(--transition-speed), transform 0.2s ease-out;
         }
-        #toast.show { visibility: visible; opacity: 1; }
+        #theme-toggle:hover { transform: scale(1.1); }
+        #theme-toggle svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--heading-color);
+            transition: transform var(--transition-speed) ease-in-out, fill var(--transition-speed);
+        }
+        .sun-icon { display: none; }
+        .moon-icon { display: block; }
+        html.dark .sun-icon { display: block; transform: rotate(360deg); }
+        html.dark .moon-icon { display: none; transform: rotate(0deg); }
 
-        @media (max-width: 768px) { body { padding: 10px 5px; } .container { padding: 15px; } h1 { font-size: 1.8em; } h2 { font-size: 1.5em; } th, td { padding: 12px 10px; font-size: 0.9em;} .modal { width: 95%; padding: 20px; } .modal-header h3 { font-size: 1.4em; } .modal-body p { font-size: 1em; } .theme-switch-wrapper{ top: 15px; left: 15px; } .app-header { padding: 15px; } }
+
+        /* --- Modal Styles --- */
+        .modal-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 999; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: var(--card-bg-color); color: var(--text-color); padding: 25px 35px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); z-index: 1000; width: 90%; max-width: 550px; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px; }
+        .modal-header h3 { margin: 0; font-size: 1.6em; color: var(--primary-color); }
+        .close-modal-btn { background: none; border: none; font-size: 2.2em; font-weight: bold; color: var(--text-muted-color); cursor: pointer; line-height: 1; padding: 0; }
+        .close-modal-btn:hover { color: var(--text-color); }
+        .modal-body p { font-size: 1.1em; color: var(--heading-color); line-height: 1.9; }
+
+        @media (max-width: 768px) { body { padding: 10px; } .container { padding: 20px; } h1 { font-size: 1.8em; } h2 { font-size: 1.5em; } th, td { padding: 10px; font-size: 0.9em;} .modal { width: 95%; padding: 20px; } .modal-header h3 { font-size: 1.4em; } .modal-body p { font-size: 1em; } #theme-toggle { top: 15px; left: 15px; width: 40px; height: 40px; } #theme-toggle svg {width: 20px; height: 20px;} }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="app-header">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-            </div>
-            <h1>خلاصة الإعراب</h1>
-            <p>دليلك التفاعلي السريع لإتقان قواعد الإعراب</p>
-        </header>
+        <button id="theme-toggle" title="تبديل المظهر">
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 11.807A9.002 9.002 0 0 1 10.049 2a9.942 9.942 0 0 0-5.12 2.735c-3.905 3.905-3.905 10.237 0 14.142 3.906 3.906 10.237 3.906 14.142 0A9.942 9.942 0 0 0 22 13.951a9.002 9.002 0 0 1-9.993-2.144Z"/></svg>
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM11 1h2v3h-2V1Zm0 19h2v3h-2v-3ZM3.54 4.46l1.42-1.42L7.04 5.12 5.62 6.54 3.54 4.46ZM16.96 18.38l1.42-1.42 2.08 2.08-1.42 1.42-2.08-2.08ZM1 11v2h3v-2H1Zm19 0v2h3v-2h-3ZM5.62 16.96l1.42 1.42L4.96 20.46l-1.42-1.42 2.08-2.08ZM18.38 3.04l1.42 1.42L17.72 6.54l-1.42-1.42 2.08-2.08Z"/></svg>
+        </button>
 
-        <h2><i class="fa-solid fa-arrow-up-wide-short"></i> أولاً: جدول المرفوعات</h2>
-        <table><thead><tr><th>الحالة</th><th>المفتاح</th><th>مثال</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو الاسم الذي تبدأ به الجملة الاسمية، ويكون الحكم عليه بالخبر.">المبتدأ</span></td><td>اسم تبدأ به الجملة.</td><td class="example-cell"><span><span class="highlight">العلمُ</span> نورٌ.</span><button class="copy-btn" data-copy-text="العلمُ نورٌ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="هو الجزء الذي يكمل معنى المبتدأ ويُخبر عنه. نسأل عنه بـ (ماله؟).">الخبر</span></td><td>يكمل معنى المبتدأ.</td><td class="example-cell"><span>العلمُ <span class="highlight">نورٌ</span>.</span><button class="copy-btn" data-copy-text="العلمُ نورٌ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="هو من قام بالفعل أو اتصف به. نسأل عنه بـ (مَن؟).">الفاعل</span></td><td>الذي قام بالفعل.</td><td class="example-cell"><span>شرح <span class="highlight">المعلمُ</span> الدرسَ.</span><button class="copy-btn" data-copy-text="شرح المعلمُ الدرسَ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="هو اسم مرفوع يأتي بعد فعل مبني للمجهول (مثل: كُتِبَ) وينوب عن الفاعل.">نائب الفاعل</span></td><td>بعد فعل مبني للمجهول.</td><td class="example-cell"><span>شُرِحَ <span class="highlight">الدرسُ</span>.</span><button class="copy-btn" data-copy-text="شُرِحَ الدرسُ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="هي أفعال ناقصة ترفع المبتدأ ويسمى (اسمها). أشهرها: كان، أصبح، صار، ليس.">اسم كان وأخواتها</span></td><td>الاسم بعد (كان...).</td><td class="example-cell"><span>كان <span class="highlight">الجوُّ</span> جميلًا.</span><button class="copy-btn" data-copy-text="كان الجوُّ جميلًا."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="هي حروف ناسخة ترفع الخبر ويسمى (خبرها). أشهرها: إنَّ، أنَّ، كأنَّ، لكنَّ.">خبر إن وأخواتها</span></td><td>الخبر بعد (إن...).</td><td class="example-cell"><span>إن العلمَ <span class="highlight">نورٌ</span>.</span><button class="copy-btn" data-copy-text="إن العلمَ نورٌ."><i class="fa-regular fa-copy"></i></button></td></tr></tbody></table>
-
-        <h2><i class="fa-solid fa-arrow-down-wide-short"></i> ثانياً: جدول المنصوبات</h2>
-        <table><thead><tr><th>الحالة</th><th>المفتاح</th><th>مثال</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو من وقع عليه فعل الفاعل. نسأل عنه بـ (ماذا؟).">المفعول به</span></td><td>وقع عليه الفعل.</td><td class="example-cell"><span>يقرأ الطالبُ <span class="highlight">الكتابَ</span>.</span><button class="copy-btn" data-copy-text="يقرأ الطالبُ الكتابَ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="مصدر منصوب من لفظ الفعل، يُذكر لتأكيده أو لبيان نوعه أو عدده.">المفعول المطلق</span></td><td>اسم من لفظ الفعل.</td><td class="example-cell"><span>انطلق <span class="highlight">انطلاقًا</span>.</span><button class="copy-btn" data-copy-text="انطلق انطلاقًا."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="مصدر منصوب يُذكر لبيان سبب حدوث الفعل. نسأل عنه بـ (لماذا؟).">المفعول لأجله</span></td><td>يبين سبب الفعل.</td><td class="example-cell"><span>أذاكر <span class="highlight">رغبةً</span> في النجاح.</span><button class="copy-btn" data-copy-text="أذاكر رغبةً في النجاح."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="اسم منصوب يدل على زمان أو مكان حدوث الفعل.">الظرف</span></td><td>يدل على زمان أو مكان.</td><td class="example-cell"><span>سافرت <span class="highlight">صباحًا</span>.</span><button class="copy-btn" data-copy-text="سافرت صباحًا."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="اسم نكرة منصوبة تبين هيئة صاحبها. نسأل عنها بـ (كيف؟).">الحال</span></td><td>يبين هيئة صاحبه.</td><td class="example-cell"><span>جاء الطفل <span class="highlight">باكيًا</span>.</span><button class="copy-btn" data-copy-text="جاء الطفل باكيًا."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="اسم نكرة منصوب يوضح إبهام اسم قبله.">التمييز</span></td><td>يزيل غموض كلمة.</td><td class="example-cell"><span>اشتريتُ كيلو <span class="highlight">تفاحًا</span>.</span><button class="copy-btn" data-copy-text="اشتريتُ كيلو تفاحًا."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="اسم منصوب يُذكر بعد أداة استثناء (إلا) في الاستثناء التام المثبت.">المستثنى</span></td><td>بعد أداة استثناء.</td><td class="example-cell"><span>حضر الطلابُ إلا <span class="highlight">طالبًا</span>.</span><button class="copy-btn" data-copy-text="حضر الطلابُ إلا طالبًا."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="اسم منصوب يُذكر بعد أداة نداء ويكون (مضافًا، أو شبيهًا بالمضاف، أو نكرة غير مقصودة).">المنادى</span></td><td>بعد أداة نداء.</td><td class="example-cell"><span>يا <span class="highlight">طالبَ</span> العلمِ، اجتهد.</span><button class="copy-btn" data-copy-text="يا طالبَ العلمِ، اجتهد."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td>خبر كان</td><td>خبر (كان) وأخواتها.</td><td class="example-cell"><span>كان الجوُّ <span class="highlight">جميلًا</span>.</span><button class="copy-btn" data-copy-text="كان الجوُّ جميلًا."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td>اسم إن</td><td>اسم (إن) وأخواتها.</td><td class="example-cell"><span>إن <span class="highlight">العلمَ</span> نورٌ.</span><button class="copy-btn" data-copy-text="إن العلمَ نورٌ."><i class="fa-regular fa-copy"></i></button></td></tr></tbody></table>
-
-        <h2><i class="fa-solid fa-arrow-down-short-wide"></i> ثالثاً: جدول المجرورات</h2>
-        <table><thead><tr><th>الحالة</th><th>المفتاح</th><th>مثال</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو كل اسم سُبق بحرف من حروف الجر (من، إلى، عن، على، في...).">الاسم المجرور</span></td><td>بعد حرف جر.</td><td class="example-cell"><span>ذهبتُ إلى <span class="highlight">المدرسةِ</span>.</span><button class="copy-btn" data-copy-text="ذهبتُ إلى المدرسةِ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="اسم مجرور يوضح الاسم النكرة الذي قبله ويخصصه. أشهر صوره: (نكرة + معرفة).">المضاف إليه</span></td><td>نكرة + معرفة.</td><td class="example-cell"><span>قرأتُ كتابَ <span class="highlight">النحوِ</span>.</span><button class="copy-btn" data-copy-text="قرأتُ كتابَ النحوِ."><i class="fa-regular fa-copy"></i></button></td></tr></tbody></table>
-
-        <h2><i class="fa-solid fa-people-arrows"></i> رابعاً: جدول التوابع (النعت)</h2>
-        <table id="followers-table"><thead><tr><th>نوع النعت</th><th>المفتاح</th><th>مثال</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو نعت ليس جملة ولا شبه جملة. يطابق ما قبله (المنعوت) في الإعراب والنوع والعدد والتعريف والتنكير.">النعت المفرد</span></td><td>معرفة + معرفة<br>نكرة + نكرة</td><td class="example-cell"><span>جاء الطالبُ <span class="highlight">المجتهدُ</span>.</span><button class="copy-btn" data-copy-text="جاء الطالبُ المجتهدُ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="جملة اسمية أو فعلية تأتي بعد اسم نكرة لتصفه. تكون في محل (رفع أو نصب أو جر) نعت.">النعت الجملة</span></td><td>اسم نكرة + جملة</td><td class="example-cell"><span>شاهدتُ عصفورًا <span class="highlight">يغردُ</span>.</span><button class="copy-btn" data-copy-text="شاهدتُ عصفورًا يغردُ."><i class="fa-regular fa-copy"></i></button></td></tr><tr><td><span class="interactive-term" data-definition="جار ومجرور أو ظرف يأتي بعد اسم نكرة ليصفه. يكون في محل (رفع أو نصب أو جر) نعت.">النعت شبه الجملة</span></td><td>اسم نكرة + شبه جملة</td><td class="example-cell"><span>شاهدتُ طائرًا <span class="highlight">فوق الغصن</span>.</span><button class="copy-btn" data-copy-text="شاهدتُ طائرًا فوق الغصن."><i class="fa-regular fa-copy"></i></button></td></tr></tbody></table>
-        
-        <h2><i class="fa-solid fa-star"></i> خامساً: الجدول الأهم (علامات الإعراب)</h2>
-        <table id="final-table"><thead><tr><th>نوع الكلمة</th><th>في حالة الرفع</th><th>في حالة النصب</th><th>في حالة الجر</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="ما دل على واحد.">المفرد</span></td><td>الضمة</td><td>الفتحة</td><td>الكسرة</td></tr><tr><td><span class="interactive-term" data-definition="ما دل على أكثر من اثنين بتغيير صورة مفرده.">جمع التكسير</span></td><td>الضمة</td><td>الفتحة</td><td>الكسرة</td></tr><tr><td><span class="interactive-term" data-definition="ما دل على أكثر من اثنتين بزيادة (ألف وتاء). يُنصب بالكسرة.">جمع المؤنث السالم</span></td><td>الضمة</td><td class="highlight">الكسرة</td><td>الكسرة</td></tr><tr><td><span class="interactive-term" data-definition="ما دل على اثنين أو اثنتين بزيادة (ألف ونون) أو (ياء ونون).">المثنى</span></td><td class="highlight">الألف</td><td class="highlight">الياء</td><td class="highlight">الياء</td></tr><tr><td><span class="interactive-term" data-definition="ما دل على أكثر من اثنين بزيادة (واو ونون) أو (ياء ونون).">جمع المذكر السالم</span></td><td class="highlight">الواو</td><td class="highlight">الياء</td><td class="highlight">الياء</td></tr><tr><td><span class="interactive-term" data-definition="أب، أخ، حم، فو، ذو. تُعرب بالحروف.">الأسماء الخمسة</span></td><td class="highlight">الواو</td><td class="highlight">الألف</td><td class="highlight">الياء</td></tr><tr><td><span class="interactive-term" data-definition="اسم لا يقبل التنوين، ويُجر بالفتحة (بشروط).">الممنوع من الصرف</span></td><td>الضمة</td><td>الفتحة</td><td class="highlight">الفتحة</td></tr></tbody></table>
+        <!-- المحتوى والجداول هنا لم تتغير -->
+        <h1>خلاصة الإعراب التفاعلية</h1>
+        <p>اضغط على المصطلحات الملونة باللون الأزرق لتعرف المزيد عنها</p>
+        <h2>أولاً: جدول المرفوعات</h2>
+        <table><thead><tr><th>الحالة</th><th>المفتاح (كيف تعرفه؟)</th><th>مثال للتوضيح</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو الاسم الذي تبدأ به الجملة الاسمية، ويكون الحكم عليه بالخبر.">المبتدأ</span></td><td>اسم تبدأ به الجملة الاسمية.</td><td><span class="highlight">العلمُ</span> نورٌ.</td></tr><tr><td><span class="interactive-term" data-definition="هو الجزء الذي يكمل معنى المبتدأ ويُخبر عنه، وبه تتم فائدة الجملة. نسأل عنه بـ (ماله؟).">الخبر</span></td><td>يكمل معنى المبتدأ.</td><td>العلمُ <span class="highlight">نورٌ</span>.</td></tr><tr><td><span class="interactive-term" data-definition="هو من قام بالفعل أو اتصف به. نسأل عنه بـ (مَن؟).">الفاعل</span></td><td>الذي قام بالفعل.</td><td>شرح <span class="highlight">المعلمُ</span> الدرسَ.</td></tr><tr><td><span class="interactive-term" data-definition="هو اسم مرفوع يأتي بعد فعل مبني للمجهول (مثل: كُتِبَ، شُرِحَ) وينوب عن الفاعل المحذوف.">نائب الفاعل</span></td><td>يأتي بعد فعل مبني للمجهول.</td><td>شُرِحَ <span class="highlight">الدرسُ</span>.</td></tr><tr><td><span class="interactive-term" data-definition="هي أفعال ناقصة ناسخة تدخل على الجملة الاسمية فترفع المبتدأ ويسمى (اسمها)، وتنصب الخبر ويسمى (خبرها). أشهرها: كان، أصبح، أمسى، صار، ليس.">اسم كان وأخواتها</span></td><td>الاسم بعد (كان، أصبح، صار...).</td><td>كان <span class="highlight">الجوُّ</span> جميلًا.</td></tr><tr><td><span class="interactive-term" data-definition="هي حروف ناسخة تدخل على الجملة الاسمية فتنصب المبتدأ ويسمى (اسمها)، وترفع الخبر ويسمى (خبرها). أشهرها: إنَّ، أنَّ، كأنَّ، لكنَّ، ليتَ، لعلَّ.">خبر إن وأخواتها</span></td><td>الخبر بعد (إن، أن، كأن...).</td><td>إن العلمَ <span class="highlight">نورٌ</span>.</td></tr></tbody></table>
+        <h2>ثانياً: جدول المنصوبات</h2>
+        <table><thead><tr><th>الحالة</th><th>المفتاح (كيف تعرفه؟)</th><th>مثال للتوضيح</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو من وقع عليه فعل الفاعل. نسأل عنه بـ (ماذا؟).">المفعول به</span></td><td>وقع عليه الفعل.</td><td>يقرأ الطالبُ <span class="highlight">الكتابَ</span>.</td></tr><tr><td><span class="interactive-term" data-definition="مصدر منصوب من لفظ الفعل، يُذكر لتأكيد الفعل أو لبيان نوعه أو عدده.">المفعول المطلق</span></td><td>اسم من لفظ الفعل.</td><td>انطلق الصاروخ <span class="highlight">انطلاقًا</span>.</td></tr><tr><td><span class="interactive-term" data-definition="مصدر منصوب يُذكر لبيان سبب حدوث الفعل. نسأل عنه بـ (لماذا؟).">المفعول لأجله</span></td><td>يبين سبب حدوث الفعل.</td><td>أذاكر <span class="highlight">رغبةً</span> في النجاح.</td></tr><tr><td><span class="interactive-term" data-definition="اسم منصوب يدل على زمان أو مكان حدوث الفعل، ويتضمن معنى (في). مثل: صباحًا، مساءً، فوق، تحت، أمام.">الظرف (المفعول فيه)</span></td><td>يدل على زمان أو مكان الفعل.</td><td>سافرت <span class="highlight">صباحًا</span>.</td></tr><tr><td><span class="interactive-term" data-definition="اسم نكرة منصوبة تبين هيئة صاحبها (الفاعل أو المفعول به) وقت حدوث الفعل. نسأل عنها بـ (كيف؟).">الحال</span></td><td>يبين هيئة صاحبه.</td><td>جاء الطفل <span class="highlight">باكيًا</span>.</td></tr><tr><td><span class="interactive-term" data-definition="اسم نكرة منصوب يوضح إبهام اسم قبله. يأتي غالبًا بعد (وزن، كيل، عدد، مساحة، أو أفعال مثل: زاد، ازداد، كفى، طاب).">التمييز</span></td><td>اسم نكرة يزيل غموض كلمة قبله.</td><td>اشتريتُ كيلو <span class="highlight">تفاحًا</span>.</td></tr><tr><td><span class="interactive-term" data-definition="اسم يُذكر بعد أداة استثناء (مثل: إلا، غير، سوى) ويكون منصوبًا في حالة الاستثناء التام المثبت.">المستثنى</span></td><td>الاسم بعد أداة استثناء (في حالة النصب).</td><td>حضر الطلابُ إلا <span class="highlight">طالبًا</span>.</td></tr><tr><td><span class="interactive-term" data-definition="اسم يُذكر بعد أداة نداء (يا، أيا، هيا) ويكون منصوبًا إذا كان (مضافًا، أو شبيهًا بالمضاف، أو نكرة غير مقصودة).">المنادى</span></td><td>بعد أداة نداء (في حالات النصب).</td><td>يا <span class="highlight">طالبَ</span> العلمِ، اجتهد.</td></tr><tr><td>خبر كان وأخواتها</td><td>الخبر الذي يكمل معنى اسم كان.</td><td>كان الجوُّ <span class="highlight">جميلًا</span>.</td></tr><tr><td>اسم إن وأخواتها</td><td>الاسم الذي يأتي بعد إن وأخواتها.</td><td>إن <span class="highlight">العلمَ</span> نورٌ.</td></tr></tbody></table>
+        <h2>ثالثاً: جدول المجرورات</h2>
+        <table><thead><tr><th>الحالة</th><th>المفتاح (كيف تعرفه؟)</th><th>مثال للتوضيح</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو كل اسم سُبق بحرف من حروف الجر. (من، إلى، عن، على، في، الباء، الكاف، اللام، رُبَّ).">الاسم المجرور</span></td><td>أي اسم يأتي بعد حرف جر.</td><td>ذهبتُ إلى <span class="highlight">المدرسةِ</span>.</td></tr><tr><td><span class="interactive-term" data-definition="اسم مجرور يوضح الاسم النكرة الذي قبله ويخصصه. أشهر صوره: (نكرة + معرفة).">المضاف إليه</span></td><td>اسم يوضح النكرة قبله.</td><td>قرأتُ كتابَ <span class="highlight">النحوِ</span>.</td></tr></tbody></table>
+        <h2>رابعاً: جدول التوابع (وأشهرها النعت)</h2>
+        <table id="followers-table"><thead><tr><th>نوع النعت</th><th>المفتاح (كيف تعرفه؟)</th><th>مثال للتوضيح</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو نعت ليس جملة ولا شبه جملة. يطابق ما قبله (المنعوت) في الإعراب والنوع والعدد والتعريف والتنكير.">النعت المفرد</span></td><td><b>القاعدة الأشهر:</b><br>1. معرفة + معرفة = نعت.<br>2. نكرة + نكرة = نعت.</td><td>جاء الطالبُ <span class="highlight">المجتهدُ</span>.<br>رأيتُ طالبًا <span class="highlight">مجتهدًا</span>.<br>سلمتُ على طالبٍ <span class="highlight">مجتهدٍ</span>.</td></tr><tr><td><span class="interactive-term" data-definition="جملة اسمية أو فعلية تأتي بعد اسم نكرة لتصفه. تكون في محل (رفع أو نصب أو جر) نعت حسب إعراب الاسم النكرة قبلها.">النعت الجملة</span></td><td><b>القاعدة الذهبية:</b><br>ابحث عن (اسم نكرة) + جملة تصفه. (الجمل بعد النكرات صفات).</td><td>شاهدتُ عصفورًا <span class="highlight">يغردُ</span>.<br>هذه حديقةٌ <span class="highlight">أشجارُها عاليةٌ</span>.</td></tr><tr><td><span class="interactive-term" data-definition="جار ومجرور أو ظرف يأتي بعد اسم نكرة ليصفه. يكون في محل (رفع أو نصب أو جر) نعت حسب إعراب الاسم النكرة قبله.">النعت شبه الجملة</span></td><td><b>نفس القاعدة الذهبية:</b><br>ابحث عن (اسم نكرة) + شبه جملة يصفه. (أشباه الجمل بعد النكرات صفات).</td><td>عرفتُ رجلًا <span class="highlight">من الصالحين</span>.<br>شاهدتُ طائرًا <span class="highlight">فوق الغصن</span>.</td></tr></tbody></table>
+        <h2>خامساً: الجدول الأهم (علامات الإعراب)</h2>
+        <table id="final-table"><thead><tr><th>نوع الكلمة</th><th>في حالة الرفع</th><th>في حالة النصب</th><th>في حالة الجر</th></tr></thead><tbody><tr><td><span class="interactive-term" data-definition="هو ما دل على واحد (مثل: طالب) أو واحدة (مثل: طالبة). علامات إعرابه كلها أصلية (ضمة، فتحة، كسرة).">المفرد</span></td><td>الضمة</td><td>الفتحة</td><td>الكسرة</td></tr><tr><td><span class="interactive-term" data-definition="هو ما دل على أكثر من اثنين بتغيير صورة مفرده (لا ينتهي بـ واو ونون أو ياء ونون). يعرب مثل المفرد تمامًا. (مثال: أقلام، رجال، مدارس).">جمع التكسير</span></td><td>الضمة</td><td>الفتحة</td><td>الكسرة</td></tr><tr><td><span class="interactive-term" data-definition="هو ما دل على أكثر من اثنتين بزيادة (ألف وتاء) على مفرده. يُرفع بالضمة ويُجر بالكسرة، ولكنه يُنصب بالكسرة نيابة عن الفتحة، وهذه علامة فرعية.">جمع المؤنث السالم</span></td><td>الضمة</td><td class="highlight">الكسرة</td><td>الكسرة</td></tr><tr><td><span class="interactive-term" data-definition="هو ما دل على اثنين أو اثنتين بزيادة (ألف ونون) في حالة الرفع، أو (ياء ونون) في حالتي النصب والجر. (مثال: طالبانِ، طالبَيْنِ).">المثنى</span></td><td class="highlight">الألف</td><td class="highlight">الياء</td><td class="highlight">الياء</td></tr><tr><td><span class="interactive-term" data-definition="هو ما دل على أكثر من اثنين بزيادة (واو ونون) في حالة الرفع، أو (ياء ونون) في حالتي النصب والجر. (مثال: معلمون، مهندسين).">جمع المذكر السالم</span></td><td class="highlight">الواو</td><td class="highlight">الياء</td><td class="highlight">الياء</td></tr><tr><td><span class="interactive-term" data-definition="هي خمسة أسماء محددة تُعرب بعلامات فرعية (حروف). وهي: أب، أخ، حم، فو (بمعنى فم)، ذو (بمعنى صاحب). تُرفع بالواو، تُنصب بالألف، وتُجر بالياء.">الأسماء الخمسة</span></td><td class="highlight">الواو</td><td class="highlight">الألف</td><td class="highlight">الياء</td></tr><tr><td><span class="interactive-term" data-definition="هو اسم لا يقبل التنوين. يُجر بالفتحة نيابة عن الكسرة، بشرط ألا يكون معرفًا بـ(أل) وألا يكون مضافًا.">الممنوع من الصرف</span></td><td>الضمة</td><td>الفتحة</td><td class="highlight">الفتحة</td></tr></tbody></table>
     </div>
     
+    <!-- Modal remains the same -->
     <div class="modal-backdrop" id="modal-backdrop"></div>
     <div class="modal" id="tooltip-modal"><div class="modal-header"><h3 id="modal-title"></h3><button class="close-modal-btn" id="close-modal">×</button></div><div class="modal-body"><p id="modal-content"></p></div></div>
-    <div id="toast">تم النسخ بنجاح!</div>
 
     <script>
+        // Modal script remains the same
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Modal Logic ---
             const interactiveTerms = document.querySelectorAll('.interactive-term');
             const modal = document.getElementById('tooltip-modal');
             const modalBackdrop = document.getElementById('modal-backdrop');
             const modalTitle = document.getElementById('modal-title');
             const modalContent = document.getElementById('modal-content');
             const closeModalBtn = document.getElementById('close-modal');
-
-            function showModal(title, content) {
-                modalTitle.textContent = title;
-                modalContent.textContent = content;
-                document.body.classList.add('modal-open');
-            }
-            function hideModal() { document.body.classList.remove('modal-open'); }
-
-            interactiveTerms.forEach(term => term.addEventListener('click', () => showModal(term.textContent, term.dataset.definition)));
+            function showModal(title, content) { modalTitle.textContent = title; modalContent.textContent = content; modal.style.display = 'block'; modalBackdrop.style.display = 'block'; document.body.classList.add('modal-open'); }
+            function hideModal() { modal.style.display = 'none'; modalBackdrop.style.display = 'none'; document.body.classList.remove('modal-open'); }
+            interactiveTerms.forEach(term => { term.addEventListener('click', () => { const title = term.textContent; const definition = term.dataset.definition; showModal(title, definition); }); });
             closeModalBtn.addEventListener('click', hideModal);
             modalBackdrop.addEventListener('click', hideModal);
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideModal(); });
-
-            // --- Dark Mode Logic ---
-            const themeToggle = document.getElementById('checkbox');
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-                themeToggle.checked = true;
-            }
-            themeToggle.addEventListener('change', function() {
-                document.body.classList.toggle('dark-mode');
-                let theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-                localStorage.setItem('theme', theme);
-            });
-
-            // --- Copy to Clipboard Logic ---
-            const copyButtons = document.querySelectorAll('.copy-btn');
-            const toast = document.getElementById('toast');
-            copyButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const textToCopy = this.dataset.copyText;
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        toast.className = 'show';
-                        setTimeout(function(){ toast.className = toast.className.replace('show', ''); }, 2000);
-                    }).catch(err => console.error('Failed to copy: ', err));
-                });
-            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.style.display === 'block') { hideModal(); } });
         });
-    </script>
-    
-    <script>
-        if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js'); }); }
+
+        // --- New Theme Toggler Script ---
+        (function() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+
+            // Function to apply the theme
+            function applyTheme(theme) {
+                if (theme === 'dark') {
+                    htmlEl.classList.add('dark');
+                } else {
+                    htmlEl.classList.remove('dark');
+                }
+                localStorage.setItem('theme', theme);
+            }
+
+            // Event listener for the toggle button
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+
+            // Initial theme check on page load
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (prefersDark) {
+                applyTheme('dark');
+            } else {
+                applyTheme('light');
+            }
+        })();
+
+        // Service Worker script remains the same
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => console.log('Service Worker: Registered'))
+                    .catch(err => console.log(`Service Worker: Error: ${err}`));
+            });
+        }
     </script>
 </body>
-</html>
+                                                                                                                                                                                                                                                                                                  </html>
